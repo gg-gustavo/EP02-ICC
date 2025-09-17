@@ -6,7 +6,7 @@ VERIF = verificaEP02
 # Compilador
 CC     = gcc
 
-# --- CONFIGURAÇÃO DO LIKWID (do guia do professor) ---
+# --- CONFIGURAÇÃO DO LIKWID ---
 LIKWID_HOME = /home/soft/likwid
 LIKWID_INCLUDE = ${LIKWID_HOME}/include
 LIKWID_LIB = ${LIKWID_HOME}/lib
@@ -43,11 +43,9 @@ testeFormato: $(PROG) $(VERIF)
 	@cat teste.dat | ./$(PROG) | ./$(VERIF)
 
 clean:
-	@echo "Limpando sujeira ..."
 	@rm -f *~ *.bak
 
 purge:  clean
-	@echo "Limpando tudo ..."
 	@rm -f core a.out $(OBJS)
 	@rm -f $(PROG) $(VERIF) $(DISTDIR) $(DISTDIR).tgz
 
