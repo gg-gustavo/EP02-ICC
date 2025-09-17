@@ -1,16 +1,30 @@
 # PROGRAMA
-    PROG = resolveEDO
-    OBJS = $(PROG).o edo.o utils.o # mod1.o mod2.o
-     VERIF = verificaEP02
+PROG = resolveEDO
+OBJS = $(PROG).o edo.o utils.o
+VERIF = verificaEP02
 
 # Compilador
-    CC     = gcc
+CC     = gcc
 
-# Acrescentar onde apropriado as opções para incluir uso da biblioteca LIKWID
-    CFLAGS = -O0
-    LFLAGS = -lm
+# --- CONFIGURAÇÃO DO LIKWID (do guia do professor) ---
+LIKWID_HOME = /home/soft/likwid
+LIKWID_INCLUDE = ${LIKWID_HOME}/include
+LIKWID_LIB = ${LIKWID_HOME}/lib
+# ----------------------------------------------------
 
-# Lista de arquivos para distribuição. Acrescentar mais arquivos se necessário.
+# Flags de compilação com as opções do LIKWID
+# -DLIKWID_PERFMON: Ativa as macros do LIKWID no código C
+# -I${LIKWID_INCLUDE}: Diz ao compilador onde encontrar o arquivo "likwid.h"
+CFLAGS = -O0 -DLIKWID_PERFMON -I${LIKWID_INCLUDE}
+
+# Flags de linkagem com as opções do LIKWID
+# -lm: Linka a biblioteca matemática (para funções como sqrt, cos, etc)
+# -L${LIKWID_LIB}: Diz ao linker onde encontrar os arquivos da biblioteca LIKWID
+# -llikwid: Linka a biblioteca LIKWID
+LFLAGS = -lm -L${LIKWID_LIB} -llikwid
+
+
+# Lista de arquivos para distribuição.
 DISTFILES = *.c *.h LEIAME* Makefile *.dat
 DISTDIR = ${USER}
 
