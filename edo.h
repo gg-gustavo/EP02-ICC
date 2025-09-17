@@ -20,9 +20,10 @@ typedef struct {
 } EDo;
 
 // Funções auxiliares
-
 Tridiag *genTridiag (EDo *edoeq);
 void prnEDOsl (EDo *edoeq);
 
-#endif // __EQDIFF_H__
+// Funções a serem implementadas
+void gaussSeidel (Tridiag *sl, real_t *x, int *it, real_t *normaL2);
 
+#endif // __EQDIFF_H__
