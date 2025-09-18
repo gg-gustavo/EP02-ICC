@@ -14,6 +14,7 @@ int main() {
     Tridiag *sl;
     real_t *x, normaL2, tempo;
     int it;
+    int edo_count = 1;
 
     LIKWID_MARKER_INIT;
 
@@ -28,31 +29,28 @@ int main() {
     {
         sl = genTridiag(&edo);
 
-        LIKWID_MARKER_START("GaussSeidel");
+        char* marker = markerName("GaussSeidel", edo_count);
+
+        LIKWID_MARKER_START(marker); // Usa o nome unico
         tempo = timestamp();
         gaussSeidel(sl, x, &it, &normaL2);
         tempo = timestamp() - tempo;
-        LIKWID_MARKER_STOP("GaussSeidel");
+        LIKWID_MARKER_STOP(marker);  // Usa o nome unico
 
-        // --- SAÍDA FORMATADA PARA O VERIFICADOR ---
-        
-        // A função prnEDOsl já imprime 'n' e a matriz aumentada [A|B]
+        free(marker);  
+        edo_count++;    
+
         prnEDOsl(&edo);
-        
-        // Imprime o vetor solução Y
         for (int i = 0; i < sl->n; ++i) {
             printf(FORMAT, x[i]);
             printf(" ");
         }
         printf("\n");
-
-        // Imprime as estatísticas finais
         printf("%d\n", it);
         printf(FORMAT, normaL2);
         printf("\n");
         printf("%.8e\n", tempo);
         
-        // Libera a memória para o próximo laço
         free(sl->D); free(sl->Di); free(sl->Ds); free(sl->B); free(sl);
     }
     

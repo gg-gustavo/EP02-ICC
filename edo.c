@@ -38,7 +38,7 @@ Tridiag *genTridiag (EDo *edo)
   return sl;
 }
 
-// Exibe SL na saída padrão (template do professor)
+// Exibe SL na saída padrão 
 void prnEDOsl (EDo *edoeq)
 {
   int n = edoeq->n, i, j;

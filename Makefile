@@ -18,8 +18,6 @@ LIKWID_LIB = ${LIKWID_HOME}/lib
 CFLAGS = -O0 -DLIKWID_PERFMON -I${LIKWID_INCLUDE}
 
 # Flags de linkagem com as opções do LIKWID
-# -lm: Linka a biblioteca matemática (para funções como sqrt, cos, etc)
-# -L${LIKWID_LIB}: Diz ao linker onde encontrar os arquivos da biblioteca LIKWID
 # -llikwid: Linka a biblioteca LIKWID
 LFLAGS = -lm -L${LIKWID_LIB} -llikwid
 
